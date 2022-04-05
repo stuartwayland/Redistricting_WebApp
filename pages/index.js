@@ -1,7 +1,7 @@
 import Layout from '../components/layout'
 import Sidebar from '../components/sidebar'
 import Run_Sim from '../components/run_sim'
-import Run_Grid from '../components/run_grid'
+
 
 export default function Index(props){
   return(
@@ -10,7 +10,7 @@ export default function Index(props){
       <h2> States </h2>
       <Run_Sim></Run_Sim>
       <h2> Grids </h2>
-      <Run_Grid></Run_Grid>
+      <p>Grids Coming Soon</p> 
 
   </section>
 )
