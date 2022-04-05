@@ -9,12 +9,13 @@ export default function Run_Sim(){
         name: '',
         nsims: '',
         ndists:'',
+        number_images:''
 
     })
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        router.push("/states/" + state.name + "?nsims=" + state.nsims + "&ndists=" + state.ndists )
+        router.push("/states/" + state.name + "?nsims=" + state.nsims + "&ndists=" + state.ndists + "&number_images="+ state.number_images )
     }
     const changeHandler = e => {
    setState({...state, [e.target.name]: e.target.value})
@@ -33,6 +34,10 @@ export default function Run_Sim(){
                     <label for="ndists"> Number of Districsts </label>
                 <div>
                     <input type="number" name='ndists' onChange={changeHandler} />
+                </div>
+                    <label for="number_images"> Number of Images in Animation </label>
+                <div>
+                    <input type="number" name='number_images' onChange={changeHandler} />
                 </div>
                 <div>
                 <button type="submit"> View </button>

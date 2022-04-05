@@ -11,7 +11,8 @@ function State(props) {
   return (
     <section>
       <h2> {props.state} </h2>
-       <Animation images={props.images} list_length = {props.list_length}/>
+      <p>The Sum of Ndists and Nsims is {props.data2}</p>
+       <Animation images={props.images} list_length = {props.number_images}/>
     </section>
   )
 }
@@ -27,19 +28,19 @@ State.getLayout = function getLayout(page) {
 
 export async function getServerSideProps(context){
 
+  const res = await fetch('http://127.0.0.1:5757/health-check')
+  const data = await res.json()
+
         const { state } = context.query
         const { nsims } = context.query
         const { ndists } = context.query
+        const {number_images} = context.query
 
-      //  let dirPath = path.resolve('public/'+ state);
-      //  var image_list = fs.readdirSync(dirPath)
-  //let filename = dirPath
-  //let message = image_list.length
-  //var images = fs.readFileSync('/Users/stuartwayland/Downloads/Redistricting/texas_enc.txt').toString();
+    const res1 = await fetch('http://127.0.0.1:5757/post-check?a='+ nsims + '&b=' + ndists)
+    const data2 = await res1.json()
 
-    //const res = await fetch(`http://127.0.0.1:8892/health-check`);
-
-    var images = [];
+    const res2 = await fetch('http://127.0.0.1:5757/run_sim?name='+state+'&nsims='+nsims+'&ndists='+ndists)
+    var images = await res2.json();
     //var list_length = image_list.length
     //for(let i = 0; i<list_length; i++){
     //    images.push(fs.readFileSync(dirPath + '/'+image_list[i]).toString());
@@ -55,9 +56,10 @@ export async function getServerSideProps(context){
      state,
      nsims,
      ndists,
+     number_images,
+     data,
+     data2,
      images,
-     //res,
-     
     }, 
   }
 }
