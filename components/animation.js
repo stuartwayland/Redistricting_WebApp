@@ -16,7 +16,7 @@ export default class Animation extends Component {
 
     next() {
         setTimeout(() => {
-            this.setState({index: (this.state.index+1)%this.list_length});
+            this.setState({index: (this.state.index+1)%(this.list_length-1)});
             this.next();
         }, 800);
     }
